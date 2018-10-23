@@ -11,9 +11,9 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const container = require('./container');
 
-container.resolve(function(users) {
+container.resolve(function(users, _) {
   mongoose.Promise = global.Promise;
-  mongoose.connect('mongodb://localhost/footbalkik');
+  mongoose.connect('mongodb://localhost/footbalkik', { useNewUrlParser: true });
   const app = SetupExpress();
 
   function SetupExpress() {
@@ -30,6 +30,9 @@ container.resolve(function(users) {
   }
 
   function ConfigureExpress(app) {
+    require('./passport/passport-local');
+    require('./passport/passport-facebook');
+
     app.use(express.static('public'));
     app.use(cookieParser());
     app.set('view engine', 'ejs');
@@ -41,6 +44,8 @@ container.resolve(function(users) {
       secret: 'thisisasecret',
       resave: true,
       saveInitialized: true,
+      saveUninitialized: true,
+
       store: new MongoStore({
         mongooseConnection: mongoose.connection
       })
@@ -49,5 +54,6 @@ container.resolve(function(users) {
     app.use(flash());
     app.use(passport.initialize());
     app.use(passport.session());
+    app.locals._ = _;
   }
 });
