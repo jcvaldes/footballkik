@@ -12,11 +12,14 @@ $(document).ready(function() {
       $.ajax({
         url: '/uploadFile',
         type: 'POST',
-        data: formData,
-        proccessData: false,
-        contentData: false,
-        success: function() {
+        data: formData ? formData : form.serialize(),
+        contentType: false,
+        processData: false,
+        success: function(data, textStatus, jqXHR) {
           uploadInput.val('');
+        },
+        error: function(data) {
+          debugger
         }
       })
     }
