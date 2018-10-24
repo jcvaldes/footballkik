@@ -10,8 +10,7 @@ const userSchema = new Schema({
   userImage: { type: String, default: 'default.png' },
   facebook: { type: String, default: '' },
   fbTokens: Array,
-  google: { type: String, default: '' },
-  googleTokens: Array
+  google: { type: String, default: '' }
 }, {
   toJSON: {
     transform: function(doc, ret) {

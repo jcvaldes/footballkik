@@ -11,7 +11,7 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const container = require('./container');
 
-container.resolve(function(users, _) {
+container.resolve(function(users, admin, _) {
   mongoose.Promise = global.Promise;
   mongoose.connect('mongodb://localhost/footbalkik', { useNewUrlParser: true });
   const app = SetupExpress();
@@ -26,12 +26,14 @@ container.resolve(function(users, _) {
     //Setup router
     const router = require('express-promise-router')();
     users.SetRouting(router);
+    admin.SetRouting(router);
     app.use(router);
   }
 
   function ConfigureExpress(app) {
     require('./passport/passport-local');
     require('./passport/passport-facebook');
+    require('./passport/passport-google');
 
     app.use(express.static('public'));
     app.use(cookieParser());
