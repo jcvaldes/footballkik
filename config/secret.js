@@ -6,5 +6,9 @@ module.exports = {
   google: {
     clientID: '802041899426-rmeak8l3g1kast3rtcabj4eriunie618.apps.googleusercontent.com',
     clientSecret: 'BQqeNNOZkaIRxExLdqRtbxfO'
+  },
+  aws: {
+    accessKey: 'AKIAIUS2XLTYF22UHPQA',
+    secretAccessKey: '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'
   }
 }

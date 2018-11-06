@@ -6,7 +6,8 @@ const container = dependable.container();
 const simpleDependencies = [
   ['_', 'lodash'],
   ['passport', 'passport'],
-  ['formidable', 'formidable']
+  ['formidable', 'formidable'],
+  ['Club', './models/clubs.js']
 ];
 simpleDependencies.forEach((val) => {
   container.register(val[0], function() {
