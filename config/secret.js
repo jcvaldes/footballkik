@@ -8,7 +8,7 @@ module.exports = {
     clientSecret: 'BQqeNNOZkaIRxExLdqRtbxfO'
   },
   aws: {
-    accessKey: 'AKIAIUS2XLTYF22UHPQA',
-    secretAccessKey: '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'
+    accessKeyId: 'AKIAIRBVQ5XXQBQPQQLQ',
+    secretAccessKey: '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'
   }
 }

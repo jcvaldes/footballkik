@@ -7,7 +7,9 @@ const simpleDependencies = [
   ['_', 'lodash'],
   ['passport', 'passport'],
   ['formidable', 'formidable'],
-  ['Club', './models/clubs.js']
+  ['async', 'async'],
+  ['Club', './models/clubs.js'],
+  ['aws', './helpers/AWSUpload.js']
 ];
 simpleDependencies.forEach((val) => {
   container.register(val[0], function() {

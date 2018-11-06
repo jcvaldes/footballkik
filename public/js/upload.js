@@ -5,7 +5,6 @@ $(document).ready(function() {
   $('#upload-input').on('change', function() {
     var uploadInput = $('#upload-input');
     if (uploadInput.val() != '') {
-      debugger
       var formData = new FormData();
       formData.append('upload', uploadInput[0].files[0]);
 
@@ -19,7 +18,7 @@ $(document).ready(function() {
           uploadInput.val('');
         },
         error: function(data) {
-          debugger
+          console.error(data);
         }
       })
     }

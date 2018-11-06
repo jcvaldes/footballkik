@@ -18,6 +18,7 @@
     },
     "homepage": "https://github.com/jcvaldes/footballkik#readme",
     "dependencies": {
+        "async": "^2.6.1",
         "aws-sdk": "^2.349.0",
         "bcrypt-nodejs": "0.0.3",
         "body-parser": "^1.18.3",
