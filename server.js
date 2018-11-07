@@ -9,9 +9,10 @@ const MongoStore = require('connect-mongo')(session);
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
 const passport = require('passport');
+const socketIO = require('socket.io');
 const container = require('./container');
 
-container.resolve(function(users, admin, _, home) {
+container.resolve(function(users, admin, _, home, group) {
   mongoose.Promise = global.Promise;
   mongoose.connect('mongodb://localhost/footbalkik', { useNewUrlParser: true });
   const app = SetupExpress();
@@ -19,15 +20,21 @@ container.resolve(function(users, admin, _, home) {
   function SetupExpress() {
     const app = express();
     const server = http.createServer(app);
+    const io = socketIO(server);
+
     server.listen(3000, () => {
       console.log('Listen on port 3000');
     });
     ConfigureExpress(app);
+
+    require('./socket/groupchat')(io);
+
     //Setup router
     const router = require('express-promise-router')();
     users.SetRouting(router);
     admin.SetRouting(router);
     home.SetRouting(router);
+    group.SetRouting(router);
     app.use(router);
   }
 
